@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Onyedikachi - Profile Card</title>
+    <meta name="description" content="Profile card for Samuel Onyedikachi - Software Developer">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <article data-testid="test-profile-card" class="profile-card" aria-labelledby="profile-name">
+            <header class="profile-header">
+                <h2 data-testid="test-user-name" class="profile-name" id="profile-name">Samuel Onyedikachi</h2>
+            </header>
+            
+            <div class="profile-content">
+                <div class="profile-image">
+                    <figure>
+                        <img 
+                            data-testid="test-user-avatar" 
+                            src="./assets/oba.jpg" 
+                            alt="Professional headshot of Samuel Onyedikachi"
+                            class="avatar"
+                        >
+                        <figcaption>Full Stack Developer & Tech Enthusiast</figcaption>
+                    </figure>
+                </div>
+                
+                <div class="profile-info">
+                    <p data-testid="test-user-bio" class="profile-bio">
+                        Passionate software developer with expertise in building scalable web applications 
+                        using modern JavaScript frameworks. With a strong foundation in both frontend and 
+                        backend technologies, I create efficient, user-centered solutions. When I'm not coding, 
+                        I enjoy exploring new technologies, contributing to open source, and sharing knowledge 
+                        with the developer community.
+                    </p>
+                    
+                    <div class="time-container">
+                        <span class="time-label">Current time:</span> 
+                        <span data-testid="test-user-time" class="time-value"></span> ms
+                    </div>
+                    
+                    <nav data-testid="test-user-social-links" class="social-nav" aria-label="Social media profiles">
+                        <h3 class="sr-only">Connect with me</h3>
+                        <ul class="social-links">
+                            <li>
+                                <a 
+                                    href="https://x.com/Psalmc0des" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    data-testid="test-user-social-twitter"
+                                    class="social-link"
+                                    aria-label="Follow me on Twitter"
+                                >
+                                    <span class="social-icon">🐦</span> Twitter
+                                </a>
+                            </li>
+                            <li>
+                                <a 
+                                    href="https://github.com/SamuelOnyedikachi" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    data-testid="test-user-social-github"
+                                    class="social-link"
+                                    aria-label="View my GitHub profile"
+                                >
+                                    <span class="social-icon">💻</span> GitHub
+                                </a>
+                            </li>
+                            <li>
+                                <a 
+                                    href="https://www.linkedin.com/in/samuel-onyedikachi/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    data-testid="test-user-social-linkedin"
+                                    class="social-link"
+                                    aria-label="Connect with me on LinkedIn"
+                                >
+                                    <span class="social-icon">💼</span> LinkedIn
+                                </a>
+                            </li>
+                            <li>
+                                <a 
+                                    href="https://www.instagram.com/psalmybass1225/" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    data-testid="test-user-social-instagram"
+                                    class="social-link"
+                                    aria-label="Follow me on Instagram"
+                                >
+                                    <span class="social-icon">📸</span> Instagram
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                    <div class="lists-container">
+                        <section class="hobbies-section" aria-labelledby="hobbies-heading">
+                            <h3 class="section-title" id="hobbies-heading">Hobbies & Interests</h3>
+                            <ul data-testid="test-user-hobbies" class="hobbies-list">
+                                <li>Hiking & Outdoor Activities</li>
+                                <li>Photography & Visual Storytelling</li>
+                                <li>Coding & Open Source Contributions</li>
+                                <li>Cooking & Culinary Experiments</li>
+                                <li>Reading Science Fiction & Tech Blogs</li>
+                                <li>Playing Guitar & Music Production</li>
+                            </ul>
+                        </section>
+                        
+                        <section class="dislikes-section" aria-labelledby="dislikes-heading">
+                            <h3 class="section-title" id="dislikes-heading">Pet Peeves</h3>
+                            <ul data-testid="test-user-dislikes" class="dislikes-list">
+                                <li>Heavy Traffic & Long Commutes</li>
+                                <li>Distractions While Coding</li>
+                                <li>Unnecessary Complexity</li>
+                                <li>Poor Documentation</li>
+                                <li>Artificial Flavors in Food</li>
+                            </ul>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
