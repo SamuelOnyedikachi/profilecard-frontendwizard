@@ -8,6 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="main-nav" data-testid="test-main-navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" data-testid="test-nav-brand">Psalmcodes</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-testid="test-nav-home" class="nav-link active">Home</a></li>
+                <li><a href="about.html" data-testid="test-nav-about" class="nav-link">About Me</a></li>
+                <li><a href="contact.html" data-testid="test-nav-contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" data-testid="test-nav-toggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
     <main>
         <article data-testid="test-profile-card" class="profile-card" aria-labelledby="profile-name">
             <header class="profile-header">

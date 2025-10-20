@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Samuel Onyedikachi</title>
+    <meta name="description" content="Get in touch with Samuel Onyedikachi - Software Developer">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav" data-testid="test-main-navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" data-testid="test-nav-brand">Psalmcodes</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-testid="test-nav-home" class="nav-link">Home</a></li>
+                <li><a href="about.html" data-testid="test-nav-about" class="nav-link">About Me</a></li>
+                <li><a href="contact.html" data-testid="test-nav-contact" class="nav-link active">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" data-testid="test-nav-toggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main data-testid="test-contact-page">
+        <article class="contact-card">
+            <header class="contact-header">
+                <h1 data-testid="test-contact-title">Get In Touch</h1>
+                <p>I'd love to hear from you! Fill out the form below and I'll get back to you soon.</p>
+            </header>
+
+            <form id="contactForm" data-testid="test-contact-form" novalidate>
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Full Name *</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName"
+                        data-testid="test-contact-name"
+                        required
+                        aria-describedby="name-error"
+                        placeholder="Enter your full name"
+                    >
+                    <span class="error-message" data-testid="test-contact-error-name" id="name-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        data-testid="test-contact-email"
+                        required
+                        aria-describedby="email-error"
+                        placeholder="Enter your email address"
+                    >
+                    <span class="error-message" data-testid="test-contact-error-email" id="email-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject" class="form-label">Subject *</label>
+                    <input 
+                        type="text" 
+                        id="subject" 
+                        name="subject"
+                        data-testid="test-contact-subject"
+                        required
+                        aria-describedby="subject-error"
+                        placeholder="What is this regarding?"
+                    >
+                    <span class="error-message" data-testid="test-contact-error-subject" id="subject-error" aria-live="polite"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message *</label>
+                    <textarea 
+                        id="message" 
+                        name="message"
+                        rows="6"
+                        data-testid="test-contact-message"
+                        required
+                        minlength="10"
+                        aria-describedby="message-error"
+                        placeholder="Enter your message (minimum 10 characters)"
+                    ></textarea>
+                    <span class="error-message" data-testid="test-contact-error-message" id="message-error" aria-live="polite"></span>
+                </div>
+
+                <button 
+                    type="submit" 
+                    class="submit-btn"
+                    data-testid="test-contact-submit"
+                >
+                    Send Message
+                </button>
+
+                <div 
+                    class="success-message" 
+                    data-testid="test-contact-success" 
+                    id="success-message"
+                    aria-live="polite"
+                    hidden
+                >
+                    ✅ Thank you! Your message has been sent successfully. I'll get back to you soon.
+                </div>
+            </form>
+        </article>
+    </main>
+
+    <script src="contact.js"></script>
+</body>
+</html>

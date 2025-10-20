@@ -1,4 +1,4 @@
-// Update time display with performance optimization
+// Update time display
 function updateTime() {
   const timeElement = document.querySelector('[data-testid="test-user-time"]');
   if (timeElement) {
@@ -12,16 +12,13 @@ updateTime();
 // Update every 100ms for reasonable accuracy without excessive updates
 const timeInterval = setInterval(updateTime, 100);
 
-// Avatar upload functionality with enhanced features
+// Avatar upload functionality
 function setupAvatarUpload() {
   const avatarElement = document.querySelector(
     '[data-testid="test-user-avatar"]'
   );
 
-  if (!avatarElement) {
-    console.warn('Avatar element not found');
-    return;
-  }
+  if (!avatarElement) return;
 
   // Create file input for avatar upload
   const fileInput = document.createElement('input');
@@ -48,14 +45,13 @@ function setupAvatarUpload() {
     }
 
     // Validate file size (max 5MB)
-    const maxSize = 5 * 1024 * 1024; // 5MB in bytes
+    const maxSize = 5 * 1024 * 1024;
     if (file.size > maxSize) {
       showNotification('Image size should be less than 5MB', 'error');
       return;
     }
 
     // Show loading state
-    const originalSrc = avatarElement.src;
     avatarElement.style.opacity = '0.7';
     avatarElement.style.cursor = 'wait';
 
@@ -65,14 +61,6 @@ function setupAvatarUpload() {
       // Create a new image to check dimensions
       const img = new Image();
       img.onload = function () {
-        // Optional: Check image dimensions
-        if (img.width < 100 || img.height < 100) {
-          showNotification('Image should be at least 100x100 pixels', 'error');
-          avatarElement.style.opacity = '1';
-          avatarElement.style.cursor = 'pointer';
-          return;
-        }
-
         // Update avatar source
         avatarElement.src = e.target.result;
         avatarElement.style.opacity = '1';
@@ -118,12 +106,56 @@ function setupAvatarUpload() {
   // Load saved avatar from localStorage if exists
   try {
     const savedAvatar = localStorage.getItem('userAvatar');
-    if (savedAvatar) {
+    if (savedAvatar && !avatarElement.src.includes('assets/')) {
       avatarElement.src = savedAvatar;
     }
   } catch (error) {
     console.warn('Could not load avatar from localStorage:', error);
   }
+}
+
+// Navigation functionality
+function setupNavigation() {
+  const navToggle = document.querySelector('[data-testid="test-nav-toggle"]');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (!navToggle || !navLinks) return;
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    navToggle.classList.toggle('active');
+    navToggle.setAttribute(
+      'aria-expanded',
+      navToggle.classList.contains('active')
+    );
+  });
+
+  // Close mobile menu when clicking on a link
+  const navLinksList = navLinks.querySelectorAll('a');
+  navLinksList.forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('.main-nav')) {
+      navLinks.classList.remove('active');
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Handle keyboard navigation
+  navToggle.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      navToggle.click();
+    }
+  });
 }
 
 // Notification system
@@ -144,19 +176,19 @@ function showNotification(message, type = 'info') {
 
   // Add styles
   notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        border-radius: 6px;
-        color: white;
-        font-weight: 500;
-        z-index: 1000;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 300px;
-    `;
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    max-width: 300px;
+  `;
 
   // Set background color based on type
   const colors = {
@@ -234,7 +266,7 @@ function enhanceAccessibility() {
 // Performance optimization for time updates
 function optimizeTimeUpdates() {
   let lastUpdateTime = 0;
-  const updateInterval = 100; // ms
+  const updateInterval = 100;
 
   function efficientUpdate() {
     const now = Date.now();
@@ -251,15 +283,18 @@ function optimizeTimeUpdates() {
 
 // Initialize all functionality when DOM is loaded
 function init() {
-  console.log('Initializing profile card...');
+  console.log('Initializing profile page...');
 
   // Initialize avatar upload
   setupAvatarUpload();
 
+  // Setup navigation
+  setupNavigation();
+
   // Enhance accessibility
   enhanceAccessibility();
 
-  // Optional: Use requestAnimationFrame for time updates (more performant)
+  // Optional: Use requestAnimationFrame for time updates
   // optimizeTimeUpdates();
 
   // Add page visibility awareness for performance
@@ -273,7 +308,7 @@ function init() {
     }
   });
 
-  console.log('Profile card initialized successfully!');
+  console.log('Profile page initialized successfully!');
 }
 
 // Initialize when DOM is fully loaded
@@ -281,14 +316,4 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
   init();
-}
-
-// Export functions for testing purposes (if needed)
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    updateTime,
-    setupAvatarUpload,
-    enhanceAccessibility,
-    showNotification,
-  };
 }
